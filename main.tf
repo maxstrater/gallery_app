@@ -51,6 +51,13 @@ resource "google_sql_database_instance" "mysql" {
   }
 }
 
+resource "google_sql_user" "root" {
+  name     = "root"
+  instance = google_sql_database_instance.mysql.name
+  host     = "%"
+  password = "your-password"
+}
+
 resource "google_compute_instance" "vm" {
   name         = "gallery-vpc" # Must match exactly
   machine_type = "e2-standard-2" 
