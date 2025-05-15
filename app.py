@@ -64,15 +64,22 @@ def db_debug():
         cursor = conn.cursor()
         cursor.execute("SELECT VERSION()")
         version = cursor.fetchone()
+        
+        # Replace this line:
         cursor.execute("SHOW TABLES")
+        
+        # With:
+        cursor.execute(f"SHOW TABLES FROM {DB_NAME}")  # Use your DB_NAME variable
+        
         tables = cursor.fetchall()
         conn.close()
+        
         return f"""
             <h1>Database Connection Successful</h1>
             <p>MySQL Version: {version['VERSION()']}</p>
-            <p>Tables in {DB_NAME}:</p>
+            <p>Tables in {DB_NAME}:</p>  <!-- Update here too -->
             <ul>
-                {"".join(f"<li>{table['Tables_in_photo_gallery']}</li>" for table in tables)}
+                {"".join(f"<li>{table[f'Tables_in_{DB_NAME}']}</li>" for table in tables)}
             </ul>
         """
     except Exception as e:
