@@ -65,11 +65,8 @@ def db_debug():
         cursor.execute("SELECT VERSION()")
         version = cursor.fetchone()
         
-        # Replace this line:
-        cursor.execute("SHOW TABLES")
-        
-        # With:
-        cursor.execute(f"SHOW TABLES FROM {DB_NAME}")  # Use your DB_NAME variable
+        # Fix: Escape DB_NAME with backticks
+        cursor.execute(f"SHOW TABLES FROM `{DB_NAME}`")
         
         tables = cursor.fetchall()
         conn.close()
@@ -77,7 +74,7 @@ def db_debug():
         return f"""
             <h1>Database Connection Successful</h1>
             <p>MySQL Version: {version['VERSION()']}</p>
-            <p>Tables in {DB_NAME}:</p>  <!-- Update here too -->
+            <p>Tables in {DB_NAME}:</p>
             <ul>
                 {"".join(f"<li>{table[f'Tables_in_{DB_NAME}']}</li>" for table in tables)}
             </ul>
