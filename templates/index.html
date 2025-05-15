@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+
+{% block title %}Home{% endblock %}
+
+{% block content %}
+<div class="hero-section text-center py-5 bg-light rounded mb-4">
+    <h1 class="display-4">Welcome to AmesList</h1>
+    <p class="lead">The best classified ads in Ames, Iowa</p>
+    <form class="d-flex justify-content-center mt-4" action="/search" method="GET">
+        <input class="form-control me-2 w-50" type="search" placeholder="Search for items..." name="q">
+        <button class="btn btn-primary" type="submit">Search</button>
+    </form>
+    {% if 'user_id' in session %}
+    <div class="mt-3">
+        <a href="{{ url_for('view_section', section='ForSale') }}" class="btn btn-success">
+            Create New Listing
+        </a>
+    </div>
+    {% endif %}
+</div>
+
+<div class="row">
+    {% for section in sections %}
+    <div class="col-md-4 mb-4">
+        <div class="card">
+            <div class="card-header bg-primary text-white">
+                <h5>{{ section|title|replace('-', ' ') }}</h5>
+            </div>
+            <div class="card-body">
+                <ul class="list-group list-group-flush">
+                    {% for category in sections[section] %}
+                    <li class="list-group-item">
+                        <a href="{{ url_for('view_category', section=section, category=category) }}">
+                            {{ category|title|replace('-', ' ') }}
+                        </a>
+                    </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}
