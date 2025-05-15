@@ -55,7 +55,7 @@ resource "google_sql_user" "root" {
   name     = "root"
   instance = google_sql_database_instance.mysql.name
   host     = "%"
-  password = "your-password"
+  password = "strater21"
 }
 
 resource "google_compute_instance" "vm" {
