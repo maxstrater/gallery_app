@@ -5,11 +5,9 @@ sudo apt-get update
 sudo apt-get install -y python3 python3-pip git
 
 # Clone your app code
-git clone https://github.com/npinnello/Bahga-Madisetti-Cloud-Computing-Solutions-Architect-Book-Code.git
-cd Bahga-Madisetti-Cloud-Computing-Solutions-Architect-Book-Code
+git clone https://github.com/maxstrater/gallery_app.git
 
 # Verify the correct app directory (update this path if needed)
-cd Chapter-7/photogallery
 
 # Install Python dependencies
 sudo pip3 install -r requirements.txt
