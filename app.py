@@ -9,8 +9,8 @@ app.secret_key = 'your-secret-key-here'  # Required for session management
 # Google Cloud SQL configuration
 DB_USER = "root"
 DB_PASSWORD = "strater21"
-DB_NAME = "gallery_db"
-DB_CONNECTION_NAME = "se422final:us-central1:gallery_db"
+DB_NAME = "gallery-db"
+DB_CONNECTION_NAME = "se422final:us-central1:gallery-db"
 
 
 # Sections & Categories
